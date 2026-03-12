@@ -1,0 +1,19 @@
+bundle:
+  name: hackathon-five-general-resources
+
+include:
+  - resources/*.yml
+  - resources/*/*.yml
+  - variables.yml
+
+targets:
+  prod:
+    default: true
+    mode: production
+    workspace:
+      root_path: /Workspace/agustin.panizza@sunnydata.ai/.bundle/${bundle.name}
+    permissions:
+      - level: CAN_MANAGE
+        user_name: agustin.panizza@sunnydata.ai
+      - level: CAN_MANAGE
+        group_name: hackaton-five
