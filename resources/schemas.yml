@@ -1,0 +1,31 @@
+resources:
+  schemas:
+    bronze_schema:
+      name: ${var.schema}_bronze
+      catalog_name: ${var.catalog}
+      comment: This schema is used for bronze layer in Medallion Architecture.
+
+    silver_schema:
+      name: ${var.schema}_silver
+      catalog_name: ${var.catalog}
+      comment: This schema is used for silver layer in Medallion Architecture.
+
+    gold_schema:
+      name: ${var.schema}_gold
+      catalog_name: ${var.catalog}
+      comment: This schema is used for gold layer in Medallion Architecture. Some projects may not need a gold layer.
+
+  volumes:
+    ingestion_volume:
+      name: ingestion_volume
+      catalog_name: ${var.catalog}
+      schema_name: ${resources.schemas.bronze_schema.name}
+      volume_type: MANAGED
+      comment: This volume is optional, it could be used for raw files that are ingested in bronze with AutoLoader
+
+    publishing_volume:
+      name: publishing_volume
+      catalog_name: ${var.catalog}
+      schema_name: ${resources.schemas.gold_schema.name}
+      volume_type: MANAGED
+      comment: This volume is optional, it could be used for files that are shared with external programs.

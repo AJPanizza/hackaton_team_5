@@ -1,0 +1,7 @@
+
+resources:
+  apps:
+    hackathon_app:
+      name: "${var.team_prefix}-hackathon-app"
+      description: "Hackathon Flask app"
+      source_code_path: ../src/app

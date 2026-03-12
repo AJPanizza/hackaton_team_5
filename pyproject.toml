@@ -1,0 +1,36 @@
+[project]
+name = "cgm-nba-pipeline"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "pyspark>=3.5",
+    "delta-spark>=3.2",
+    "databricks-sdk>=0.30",
+    "anthropic>=0.28",
+    "streamlit>=1.35",
+    "psycopg2-binary>=2.9",
+    "altair>=5.3",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pytest-cov>=5",
+    "ruff>=0.4",
+    "mypy>=1.10",
+    "nbqa>=1.8",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov src --cov-fail-under=80"
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N"]
+
+[tool.mypy]
+strict = false
+ignore_missing_imports = true

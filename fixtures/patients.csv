@@ -1,0 +1,13 @@
+patient_id,full_name,email,phone,address,state,zip_code,age,gender,primary_condition,insurance_type,risk_tier,has_cgm,enroll_date
+PAT000001,Robert Williams,robert.w12@yahoo.com,(713) 555-2345,"789 Elm St, Houston, TX",TX,77001,58,Male,Type 2 Diabetes,Commercial,High,1,2021-04-01
+PAT000002,Maria Gonzalez,m.gonzalez@gmail.com,(305) 555-8821,"4201 NW 7th Ave, Miami, FL",FL,33127,67,Female,Type 2 Diabetes,Medicare,Very High,1,2020-08-15
+PAT000003,James Carter,jcarter88@outlook.com,(312) 555-3301,"560 N Michigan Ave, Chicago, IL",IL,60611,52,Male,Hypertension,Commercial,Medium,0,2022-01-10
+PAT000004,Linda Chen,linda.chen@hotmail.com,(415) 555-0092,"1882 Market St, San Francisco, CA",CA,94102,44,Female,Type 2 Diabetes,Commercial,Medium,1,2022-06-20
+PAT000005,David Thompson,d.thompson@gmail.com,(214) 555-7745,"303 Main St, Dallas, TX",TX,75201,71,Male,Type 2 Diabetes,Medicare,Very High,1,2019-11-05
+PAT000006,Susan Patel,susan.patel@yahoo.com,(617) 555-4490,"98 Commonwealth Ave, Boston, MA",MA,02116,63,Female,COPD,Medicare,Low,0,2023-03-18
+PAT000007,Michael Brown,mbrown77@gmail.com,(404) 555-6612,"720 Peachtree St NE, Atlanta, GA",GA,30308,55,Male,Type 2 Diabetes,Medicaid,High,1,2021-09-30
+PAT000008,Patricia Nguyen,p.nguyen@yahoo.com,(702) 555-2278,"8800 W Flamingo Rd, Las Vegas, NV",NV,89147,61,Female,Type 2 Diabetes,Commercial,Very High,1,2020-05-12
+PAT000009,Charles Robinson,c.robinson@outlook.com,(206) 555-9934,"2401 4th Ave, Seattle, WA",WA,98121,74,Male,Heart Failure,Medicare,High,0,2021-02-28
+PAT000010,Angela Davis,angela.d@gmail.com,(602) 555-3387,"1550 N Central Ave, Phoenix, AZ",AZ,85004,49,Female,Type 2 Diabetes,Medicaid,Medium,1,2022-11-07
+PAT000011,Kevin Martinez,k.martinez@hotmail.com,(720) 555-5521,"1600 Glenarm Pl, Denver, CO",CO,80202,38,Male,Type 2 Diabetes,Commercial,Low,1,2023-07-14
+PAT000012,Dorothy Wilson,d.wilson55@yahoo.com,(901) 555-1198,"400 Union Ave, Memphis, TN",TN,38103,60,Female,Obesity,Medicaid,Low,0,2023-01-22

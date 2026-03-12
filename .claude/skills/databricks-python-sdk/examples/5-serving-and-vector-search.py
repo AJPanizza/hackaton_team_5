@@ -6,12 +6,13 @@ Vector Search: https://databricks-sdk-py.readthedocs.io/en/latest/workspace/vect
 """
 
 from datetime import timedelta
+
 from databricks.sdk import WorkspaceClient
 from databricks.sdk.service.serving import (
     EndpointCoreConfigInput,
+    Route,
     ServedEntityInput,
     TrafficConfig,
-    Route,
 )
 
 w = WorkspaceClient()

@@ -1,0 +1,22 @@
+.mcp.json
+
+# Databricks
+.databricks/
+
+# Build / distribution
+dist/
+*.egg-info/
+
+# Virtual environments
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Tool caches
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+uv.lock

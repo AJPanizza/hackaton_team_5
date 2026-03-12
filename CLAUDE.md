@@ -149,6 +149,51 @@ CGM and EHR data is PHI (Protected Health Information). All patient-identifiable
 
 ---
 
+## Test Fixtures
+
+Mock datasets live in `fixtures/` and must be used for all local unit tests. They follow the production data dictionary exactly.
+
+### `fixtures/patients.csv` — 12 patients
+| Field | Notes |
+|-------|-------|
+| `patient_id` | Format `PAT` + 6-digit int |
+| `has_cgm` | 8 patients = `1` (CGM enrolled), 4 = `0` |
+| `risk_tier` | Mix: Low (2), Medium (3), High (3), Very High (2) (for non-cgm patients) |
+| `primary_condition` | Mostly Type 2 Diabetes; also Hypertension, COPD, Heart Failure, Obesity |
+| `insurance_type` | Commercial, Medicare, Medicaid (no Uninsured in this fixture) |
+| PHI fields | `full_name`, `email`, `phone`, `address` — synthetic only, never real data |
+
+**CGM-enrolled patients** (valid FK targets for `device_telemetry`):
+`PAT000001`, `PAT000002`, `PAT000004`, `PAT000005`, `PAT000007`, `PAT000008`, `PAT000010`, `PAT000011`
+
+### `fixtures/device_telemetry.csv` — 60 readings
+| Field | Notes |
+|-------|-------|
+| `reading_id` | Format `CGM` + 8-digit int |
+| `patient_id` | Only CGM-enrolled patients (`has_cgm=1`) |
+| `device_type` | `CGM` (primary) and `Insulin Pump` (co-readings on alert events) |
+| `device_model` | Dexcom G7, Libre 3, Medtronic 780G, Omnipod 5 |
+| `reading_ts` | 5-minute intervals; all timestamps before 2026-03-11 (no future data) |
+| `glucose_mg_dl` | Full range covered: hypo (<70), normal (70–180), hyper (>180) |
+| `insulin_units` | `0.0` for CGM rows; `1.0–7.0` for Insulin Pump rows |
+| `is_hypoglycemic` | `1` when glucose < 70 (PAT000002, PAT000010 have hypo sequences) |
+| `is_hyperglycemic` | `1` when glucose > 180 (PAT000001, PAT000005, PAT000007, PAT000008) |
+| `alert_triggered` | `1` when glucose outside 70–180 |
+| `variability_cv` | Range 0.155–0.461; PAT000002, PAT000005, PAT000008 exceed CV > 0.36 threshold |
+
+### NBA Test Scenarios Covered
+
+| Scenario | Patient(s) | What it tests |
+|----------|-----------|---------------|
+| Persistent hyperglycemia (>70% readings) | PAT000005, PAT000008 | Medication review NBA trigger |
+| Hypoglycemic sequence (2 events in 7 days) | PAT000002 | Urgent care outreach trigger |
+| Alert → insulin correction pattern | PAT000001, PAT000005, PAT000008 | Pump co-reading within alert window |
+| Normal range patient (low CV) | PAT000011 | No-action / adherence positive reinforcement |
+| Rapid drop into hypo | PAT000010 | Real-time alert latency test |
+| High glucose variability (CV > 0.36) | PAT000002, PAT000005, PAT000008 | NBA model feature: instability flag |
+
+---
+
 ## Hackathon Deliverable
 
 A single unified Databricks pipeline demonstrating:
