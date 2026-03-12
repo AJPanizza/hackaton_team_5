@@ -1,0 +1,37 @@
+variables:
+  team_prefix:
+    description: "Prefix for resource names (lowercase letters, numbers, dashes only — used in app/DB names). Pass via --var=\"team_prefix=team-five\" at deploy time."
+    default: team-five-general
+
+  catalog:
+    description: "Unity Catalog name (must already exist in the workspace)."
+    default: "team_5_hackaton"
+
+  schema:
+    description: "Base schema name with underscores (medallion layer suffixes are appended by resources)."
+    default: "team_five"
+
+  emails_to_notify:
+    description: "List of email addresses to notify on job failure or duration warning."
+    default: []
+
+  webhook_id:
+    description: "Webhook ID for job notifications (Slack or PagerDuty integration)."
+    default: ""
+
+  default_tags:
+    description: "Standard resource tags required by org governance policy."
+    default:
+      Business_Unit: "Digital Health"
+      Team: "Patient Engagement"
+      Product: "CGM NBA Pipeline"
+      Project: "Hackathon Connected Device Intelligence"
+      Budget_Code: "DH-HACK-2026"
+
+  anthropic_secret_scope:
+    description: "Databricks secret scope that holds the Anthropic API key."
+    default: "hackathon"
+
+  anthropic_secret_key:
+    description: "Secret key name within the secret scope for the Anthropic API key."
+    default: "anthropic_api_key"
